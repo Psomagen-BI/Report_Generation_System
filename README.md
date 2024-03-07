@@ -1,6 +1,6 @@
 # Report Generation System
 ## Structure of configuration file
-The structure can be found on [this website](https://docs.google.com/document/d/1ZALgdN2HO0FHXR_JpvImAxa6Pl5FnVQKeMt6BZz7nRI/edit).
+The structure can be found on [this website](https://docs.google.com/document/d/1DFicfIuy7iggjPIS65WqtmdJV2QZALjv8J8KcCrN0po/edit).
 
 The keys marked with “<>“ are subject to change depending on a type of a report or information and files needed for a report.
 Other keys are fixed.
