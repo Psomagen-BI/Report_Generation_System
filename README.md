@@ -10,16 +10,10 @@ python3 make_report.py "REPORT TYPE"
 
 The body of a report is generated in order of paths in "Contents" key in configuration file.
 
-This version supports "xlsx", "png", "jpg", "jpeg", and "gif", "txt" files.
+This version supports "xlsx", "csv", "png", "jpg", "jpeg", and "gif", "txt" files.
 
 For xlsx file, a table should be started from A1 index.
 
 To generate text, please use "txt" file extension.
 
 To generate images, please use "png", "jpg", or "jpeg" file extension.
-
-<<<<<<< HEAD
-To generate table, please use "xlsx" file extension.
-=======
-To generate table, please use "xlsx" file extension.
->>>>>>> 73cdb43042d7b52392c6bfe77c8a72cf13293bc8
