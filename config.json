@@ -1,107 +1,29 @@
 {
-    "TEST" : {
-        "Save_Location" : "/lustre2/BI_Analysis/pilkyu/Creating_Report_PDF/Sample_Order/",
-        "Cover" : {
-            "Name" : "Raw Data",
-            "Date" : "March 2024"
-        },
-        
-        "Project Information" : {
-            "Client Name" : "TEST",
-            "Company / Institution" : "TEST",
-            "Order Number" : "AN000000",
-            "Type of Read" : "Paired-end",
-            "Read Length" : 151,
-            "Number of Samples" : 4,
-            "Type of Sequencer" : "Illumina platform"
-        },
-    
-        "Body" : {
-            "Chapter1" :{
-                "Title" : "Data Download Information",
-                "Sections": {
-                    "1" : {
-                        "Title": "Raw Data and Analysis Results",
-                        "Contents": [
-                            "/lustre2/BI_Analysis/pilkyu/Creating_Report_PDF/Sample_Order/sample_image.jpg",
-                            "/lustre2/BI_Analysis/pilkyu/Creating_Report_PDF/Sample_Order/sample_data.xlsx",
-                            "/lustre2/BI_Analysis/pilkyu/Creating_Report_PDF/Sample_Order/sample_content.txt"
-                        ]
-                    }
-                }
-            },
-            "Chapter2" :{
-                "Title" : "Experimental Methods and Workflow",
-                "Sections": {
-                    "1" : {
-                        "Title": "Experiment Overview",
-                        "Contents": [
-                            "/lustre2/BI_Analysis/pilkyu/Creating_Report_PDF/Sample_Order/sample_image.jpg",
-                            "/lustre2/BI_Analysis/pilkyu/Creating_Report_PDF/Sample_Order/sample_csv_data.csv",
-                            "/lustre2/BI_Analysis/pilkyu/Creating_Report_PDF/Sample_Order/sample_content.txt"
-                        ]
-                    },
-                    "2" : {
-                        "Title": "Generation of Raw Data",
-                        "Contents": [
-                            "/lustre2/BI_Analysis/pilkyu/Creating_Report_PDF/Sample_Order/sample_image.jpg",
-                            "/lustre2/BI_Analysis/pilkyu/Creating_Report_PDF/Sample_Order/sample_data.xlsx",
-                            "/lustre2/BI_Analysis/pilkyu/Creating_Report_PDF/Sample_Order/sample_content.txt"
-                        ]                    }
-                }
+    "Chapter1" :{
+        "Title" : "",
+        "Sections": {
+            "1" : {
+                "Title": "",
+                "Contents": [
+                    
+                ]
             }
         }
     },
-    
-    "WGS": {
-        "Save_Location" : "/lustre2/BI_Analysis/pilkyu/Test/Result",
-        "Cover": {
-            "Name": "Bacillus subtillis",
-            "Date": "March 2024"
-        },
-        "Project Information": {
-            "Client Name": "Francisco DelaTorre",
-            "Company/Institution": "Innovak Biologicos del Noroeste",
-            "Order Number": "AN00011562",
-            "Species": "Bacillus subtillis",
-            "Reference": "GCF_002993925.1",
-            "Library Kit": "Truseq DNA PCR-Free",
-            "Type of Read": "Paired-ends",
-            "Read Length" : 151,
-            "Number of Samples": 1,
-            "Type of Analysis": "Whole Genome Resequencing",
-            "Type of Sequencer": "Illumina Platform"
-        },
-        "Body": {
-            "Chapter1": {
-                "Title": "Data Download Information",
-                "Sections": {
-                    "1": {
-                        "Title": "Raw Data Analysis Results",
-                        "Contents": [
-                            "/lustre2/BI_Analysis/pilkyu/Test/Chapter1/Section1/table1.xlsx",
-                            "/lustre2/BI_Analysis/pilkyu/Test/Chapter1/Section1/text1.txt"
-                        ]
-                    },
-                    "2": {
-                        "Title": "Details of File Extensions",
-                        "Contents": [
-                            "/lustre2/BI_Analysis/pilkyu/Test/Chapter1/Section2/table1.csv",
-                            "/lustre2/BI_Analysis/pilkyu/Test/Chapter1/Section2/text1.txt"
-                        ]
-                    }
-                }
+    "Chapter2" :{
+        "Title" : "",
+        "Sections": {
+            "1" : {
+                "Title": "",
+                "Contents": [
+
+                ]
             },
-            "Chapter2": {
-                "Title": "Experimental Methods and Workflow",
-                "Sections": {
-                    "1": {
-                        "Title": "Overview",
-                        "Contents": [
-                            "/lustre2/BI_Analysis/pilkyu/Test/Chapter2/Section1/image1.png"
-                        ]
-                    }
-                }
+            "2" : {
+                "Title": "",
+                "Contents": [
+
+                ]
             }
         }
     }

@@ -2,17 +2,12 @@
 ## Structure of configuration file
 The structure can be found on [this website](https://docs.google.com/document/d/1DFicfIuy7iggjPIS65WqtmdJV2QZALjv8J8KcCrN0po/edit).
 
-The keys marked with “<>“ are subject to change depending on a type of a report or information and files needed for a report.
-Other keys are fixed.
-
 ## Usage
 python3 make_report.py "REPORT TYPE"
 
-The body of a report is generated in order of paths in "Contents" key in configuration file.
+This version supports "xlsx", "csv", "png", "jpg", "jpeg","gif", and "txt" files.
 
-This version supports "xlsx", "csv", "png", "jpg", "jpeg", and "gif", "txt" files.
-
-For xlsx file, a table should be started from A1 index.
+"xlsx" or "csv" table should be strated from index A1.
 
 To generate text, please use "txt" file extension.
 

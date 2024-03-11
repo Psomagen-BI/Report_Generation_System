@@ -1,30 +1,10 @@
-from reportlab.platypus import Table, TableStyle, Paragraph, Image
-from reportlab.lib import colors
+from reportlab.platypus import Table, Paragraph, Image
 from report_package import styles
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.utils import ImageReader
-from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 import pandas as pd
 import csv
-
-def make_table(data):
-    pre_table = []
-    for k in data:
-        arr = []
-        arr.append(k)
-        arr.append(data[k])
-        pre_table.append(arr)
-
-    t=Table(pre_table, colWidths=[170, 330])
-    t.setStyle(TableStyle([('ALIGN',(0,0),(-1,-1),'CENTER'),
-                        ('INNERGRID', (0,0), (-1,-1), 0.25, colors.black),
-                        ('LINEABOVE', (0,0), (-1,-1), 0.25, colors.black),
-                        ('LINEBELOW', (0,0), (-1,-1), 0.25, colors.black),
-                        ('BACKGROUND', (0, 0), (0, -1), colors.lightgrey),
-                        ('FONT', (0, 0), (0, -1), 'Times-Bold'),
-                        ('FONT', (1, 0), (1, -1), 'Times-Roman'),
-                        ]))
-    return t
+import numpy as np
 
 def insert_text_file(path, content):
     with open(path, "r") as file:
@@ -52,7 +32,7 @@ def insert_image_file(path, content, rate):
     content.append(img)
     content.append(styles.h4_spacer)
 
-def insert_excel_to_table(path, content):
+def insert_excel_to_table(path, page):
     ext = path.split("/")[-1].split(".")[-1]
     arr = []
 
@@ -63,20 +43,13 @@ def insert_excel_to_table(path, content):
                 arr.append(line)
     elif ext == "xlsx":
         df = pd.read_excel(path, header=None, engine="openpyxl")
+        df = df.replace(r'^\s+$', np.nan, regex=True).dropna(how='all')
         arr = df.values.tolist()
 
-    for row in range(len(arr)):
-        for col in range(len(arr[row])):
-            if row > 0:
-                arr[row][col] = Paragraph(str(arr[row][col]), styles.table_text_style)
+    if page == "proj_info":
+        styles.proj_info_table_paragraphize(arr)
+    else:
+        styles.content_table_paragraphize(arr)
 
-    t=Table(arr)
-    t.setStyle(TableStyle([('ALIGN',(0,0),(-1,-1),'CENTER'),
-                        ('BACKGROUND', (0, 0), (-1, 0), colors.lightgrey),
-                        ('LINEBELOW', (0,0), (-1,-1), 0.25, colors.black),
-                        ('FONT', (0, 0), (-1, 0), 'Times-Bold'),
-                        ('FONT', (0, 1), (-1, -1), 'Times-Roman'),
-                        ]))
-
-    content.append(t)
-    content.append(styles.h4_spacer)
+    t = Table(arr)
+    return t

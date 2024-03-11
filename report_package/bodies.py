@@ -1,3 +1,4 @@
+import re
 from reportlab.platypus import Paragraph, PageBreak
 from report_package import styles, tools
 
@@ -7,7 +8,8 @@ txt_file_exts = ["txt"]
 
 def create(content, data):
     for chapter in data:
-        chapter_num = chapter[7:]
+        chapter_num = re.compile("([a-zA-z]*)([0-9]+)").match(chapter).groups()[1]
+        
         content.append(Paragraph(styles.bold(chapter_num + ". "+ data[chapter]["Title"]), styles.h2))
         content.append(styles.h1_spacer)
         for section_num in data[chapter]["Sections"]:
@@ -23,7 +25,10 @@ def create(content, data):
                     elif file.split(".")[-1].lower() in img_file_exts:
                         tools.insert_image_file(c, content, 0.6)
                     elif file.split(".")[-1].lower() in table_file_exts:
-                        tools.insert_excel_to_table(c, content)
+                        table = tools.insert_excel_to_table(c, "content")
+                        table.setStyle(styles.content_table_style)
+                        content.append(table)
+                        content.append(styles.h4_spacer)
                     else :
                         print(file + " Is Not Supported!")
                         content.append(Paragraph(styles.bold(file + " Is Not Supported")))

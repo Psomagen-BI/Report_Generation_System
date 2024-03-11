@@ -1,13 +1,15 @@
+import os
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.lib.utils import ImageReader
 from reportlab.lib.units import cm
-from reportlab.platypus import Spacer
+from reportlab.lib import colors
+from reportlab.platypus import Spacer, TableStyle, Paragraph
 
 # Cover Page Style
 def first_page(canvas, pdf):
     canvas.saveState()
-    back_image_path = "/lustre2/BI_Analysis/pilkyu/Creating_Report_PDF/sources/Cover_Image.png"
-    psom_image_path = "/lustre2/BI_Analysis/pilkyu/Creating_Report_PDF/sources/psoma_logo_whiteback.PNG"
+    back_image_path = os.path.join("sources", "Cover_Image.png")
+    psom_image_path = os.path.join("sources", "psoma_logo_whiteback.PNG")
     back_image = ImageReader(back_image_path)
     psom_image = ImageReader(psom_image_path)
     canvas.drawImage(back_image, 0, pdf.height/5, pdf.width+150, pdf.height*3/5)
@@ -19,7 +21,7 @@ def first_page(canvas, pdf):
 def later_pages(canvas, doc):
     canvas.saveState()
     # Upper Right Image
-    psom_image_path = "/lustre2/BI_Analysis/pilkyu/Creating_Report_PDF/sources/psoma_logo_whiteback.PNG"
+    psom_image_path = os.path.join("sources", "psoma_logo_whiteback.PNG")
     psom_image = ImageReader(psom_image_path)
     canvas.drawImage(psom_image, canvas._pagesize[0] - 150, canvas._pagesize[1] - 60, 110, 40)
     # Bottom Right Page Number
@@ -35,10 +37,26 @@ def later_pages(canvas, doc):
 def bold(str):
     return "<b>" + str + "</b>"
 
+def proj_info_table_paragraphize(arr):
+    for row in range(len(arr)):
+        for col in range(len(arr[row])):
+            if col > 0:
+                arr[row][col] = Paragraph(str(arr[row][col]), table_text_style)
+            else:
+                arr[row][col] = Paragraph(bold(str(arr[row][col])), table_text_style)
+    
+def content_table_paragraphize(arr):
+    for row in range(len(arr)):
+        for col in range(len(arr[row])):
+            if row > 0:
+                arr[row][col] = Paragraph(str(arr[row][col]), table_text_style)
+            else:
+                arr[row][col] = Paragraph(bold(str(arr[row][col])), table_text_style)
+
 cover_h1 = ParagraphStyle(
     name='cover_h1',
     parent=getSampleStyleSheet()['Normal'],
-    fontSize=40,
+    fontSize=52,
     fontName='Times-Roman',
     leading=40
 )
@@ -46,7 +64,7 @@ cover_h1 = ParagraphStyle(
 cover_date = ParagraphStyle(
     name='cover_date',
     parent=getSampleStyleSheet()['Normal'],
-    fontSize=15,
+    fontSize=28,
     fontName='Times-Roman'
 )
 
@@ -100,8 +118,24 @@ tab = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
 table_text_style = ParagraphStyle(
     name='table_text',
     parent=getSampleStyleSheet()['Normal'],
-    fontSize=9,
-    fontName='Helvetica',
+    fontSize=10,
+    fontName='Times-Roman',
     leading=14,
     alignment=1
 )
+
+proj_info_table_style = TableStyle([('ALIGN',(0,0),(-1,-1),'CENTER'),
+                        ('INNERGRID', (0,0), (-1,-1), 0.25, colors.black),
+                        ('LINEABOVE', (0,0), (-1,-1), 0.25, colors.black),
+                        ('LINEBELOW', (0,0), (-1,-1), 0.25, colors.black),
+                        ('BACKGROUND', (0, 0), (0, -1), colors.lightgrey),
+                        ('FONT', (0, 0), (0, -1), 'Times-Bold'),
+                        ('FONT', (1, 0), (1, -1), 'Times-Roman'),
+                        ])
+
+content_table_style = TableStyle([('ALIGN',(0,0),(-1,-1),'CENTER'),
+                        ('BACKGROUND', (0, 0), (-1, 0), colors.lightgrey),
+                        ('LINEBELOW', (0,0), (-1,-1), 0.25, colors.black),
+                        ('FONT', (0, 0), (-1, 0), 'Times-Bold'),
+                        ('FONT', (0, 1), (-1, -1), 'Times-Roman'),
+                        ])
